@@ -18,3 +18,4 @@ target/
 .mvn/
 mvnw
 mvnw.cmd
+src/main/resources/static/
