@@ -5,6 +5,7 @@ import {AppComponent} from './app.component';
 import {BattleSimulatorComponent} from './battle-simulator/battle-simulator.component';
 import {HttpModule} from "@angular/http";
 import {NpcCreatorComponent} from './npc-creator/npc-creator.component';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,14 @@ import {NpcCreatorComponent} from './npc-creator/npc-creator.component';
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot([{
+      path: 'battleSimulator',
+      component: BattleSimulatorComponent
+    }, {
+      path: 'npcCreator',
+      component: NpcCreatorComponent
+    }])
   ],
   providers: [],
   bootstrap: [AppComponent]
