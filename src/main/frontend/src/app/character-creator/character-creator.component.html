@@ -1,0 +1,28 @@
+<div class="mainDiv">
+  <div class="characterList">
+    <div class="character" *ngFor="let character of characters" (click)="select(character)"
+         [class.selected]="character.id == currentCharacter.id">
+      {{character.name}}
+    </div>
+  </div>
+  <div class="characterEditor">
+    <div class="topRow">
+      <button>New...</button>
+      <label>
+        <input type="text" [(ngModel)]="currentCharacter.name">
+      </label>
+      <span *ngIf="currentCharacter.id >= 0">Editing id {{currentCharacter.id}}</span>
+      <span *ngIf="currentCharacter.id < 0">Creating new character</span>
+    </div>
+    <div class="attributePane">
+      <label>
+        Initiative:
+        <input type="number" [(ngModel)]="currentCharacter.initiative">
+      </label><br/>
+      <label>
+        Health:
+        <input type="number" [(ngModel)]="currentCharacter.maxHealth">
+      </label>
+    </div>
+  </div>
+</div>
