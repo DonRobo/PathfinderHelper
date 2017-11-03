@@ -4,9 +4,9 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {BattleSimulatorComponent} from './battle-simulator/battle-simulator.component';
 import {HttpModule} from "@angular/http";
-import {RouterModule} from "@angular/router";
 import {CharacterCreatorComponent} from "./character-creator/character-creator.component";
 import {FormsModule} from "@angular/forms";
+import {AppRoutingModule} from "./app-routing.module";
 
 @NgModule({
   declarations: [
@@ -18,17 +18,7 @@ import {FormsModule} from "@angular/forms";
     BrowserModule,
     HttpModule,
     FormsModule,
-    RouterModule.forRoot([{
-      path: 'battleSimulator',
-      component: BattleSimulatorComponent
-    }, {
-      path: 'characterCreator',
-      component: CharacterCreatorComponent
-    }, {
-      path: '',
-      redirectTo: '/battleSimulator',
-      pathMatch: 'full'
-    }])
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
