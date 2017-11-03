@@ -1,14 +1,6 @@
 target/
 !.mvn/wrapper/maven-wrapper.jar
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-
 ### IntelliJ IDEA ###
 .idea
 *.iws
@@ -18,4 +10,5 @@ target/
 .mvn/
 mvnw
 mvnw.cmd
+db/*
 src/main/resources/static/
