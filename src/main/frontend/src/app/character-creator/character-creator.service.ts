@@ -53,6 +53,7 @@ export class Character {
   constructor() {
     this.id = -1;
     this.name = "";
+    this.maxHitpoints = 1;
     this.armorBonus = 0;
     this.strength = 10;
     this.dexterity = 10;

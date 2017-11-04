@@ -61,7 +61,7 @@ export class CharacterCreatorComponent implements OnInit {
   }
 
   select(character: Character) {
-    this.currentCharacter = character;
+    this.currentCharacter = Object.assign(new Character(), character);
   }
 
   private updateList() {
