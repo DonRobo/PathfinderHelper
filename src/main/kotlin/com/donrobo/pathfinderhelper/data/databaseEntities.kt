@@ -37,13 +37,15 @@ data class CharacterEntity(
 @Entity
 data class WeaponEntity(
         @GeneratedValue @Id var id: Long?,
-        @Column(unique = true) var name: String
+        @Column(unique = true) var name: String,
+        var attack: Int
 ) {
     constructor(jsonWeapon: JsonWeapon) : this(
             id = if (jsonWeapon.id == null || jsonWeapon.id < 0) null else jsonWeapon.id,
-            name = jsonWeapon.name
+            name = jsonWeapon.name,
+            attack = jsonWeapon.attack
     )
 
     @Suppress("unused")
-    private constructor() : this(null, "")
+    private constructor() : this(null, "", 1)
 }

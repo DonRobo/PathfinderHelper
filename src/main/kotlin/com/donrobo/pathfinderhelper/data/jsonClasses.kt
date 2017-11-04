@@ -32,10 +32,12 @@ data class JsonCharacter(
 
 data class JsonWeapon(
         val id: Long?,
-        val name: String
+        val name: String,
+        val attack: Int
 ) {
     constructor(weaponEntity: WeaponEntity) : this(
             id = weaponEntity.id,
-            name = weaponEntity.name
+            name = weaponEntity.name,
+            attack = weaponEntity.attack
     )
 }

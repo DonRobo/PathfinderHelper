@@ -30,9 +30,15 @@ export class WeaponCreatorService {
 export class Weapon {
   id: number;
   name: string;
+  attack: number;
+
+  static attributes: string[] = [
+    "attack"
+  ];
 
   constructor() {
     this.id = -1;
     this.name = "";
+    this.attack = 1;
   }
 }

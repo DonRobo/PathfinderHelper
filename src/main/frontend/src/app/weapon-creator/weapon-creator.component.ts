@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Weapon, WeaponCreatorService} from "./weapon-creator.service";
+import {decamelize, NumberAttribute} from "../utils";
 
 @Component({
   selector: 'app-weapon-creator',
@@ -11,6 +12,8 @@ export class WeaponCreatorComponent implements OnInit {
 
   currentWeapon: Weapon;
 
+  weaponAttributes: NumberAttribute[] = [];
+
   constructor(private weaponCreatorService: WeaponCreatorService) {
   }
 
@@ -18,11 +21,40 @@ export class WeaponCreatorComponent implements OnInit {
     this.weapons = [];
     this.newWeapon();
     this.updateList();
+    this.initializeAttributes();
+  }
+
+  initializeAttributes() {
+    for (let attr of Weapon.attributes) {
+      this.weaponAttributes.push({
+        attribute: attr,
+        label: decamelize(attr)
+      })
+    }
   }
 
   newWeapon() {
     this.currentWeapon = new Weapon();
   }
+
+  save() {
+    this.weaponCreatorService.save(this.currentWeapon).then(newWeapon => {
+      this.updateList();
+      this.select(newWeapon);
+    });
+  }
+
+  deleteWeapon() {
+    this.weaponCreatorService.deleteWeapon(this.currentWeapon).then(_ => {
+      this.updateList();
+      this.newWeapon();
+    });
+  }
+
+  select(weapon: Weapon) {
+    this.currentWeapon = Object.assign(new Weapon(), weapon);
+  }
+
 
   private updateList() {
     this.weaponCreatorService.getWeapons().then(newWeapons => {

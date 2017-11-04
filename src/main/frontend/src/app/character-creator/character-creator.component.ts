@@ -26,15 +26,11 @@ export class CharacterCreatorComponent implements OnInit {
 
   initializeAttributes() {
     for (let attr of PathfinderCharacter.attributes) {
-      this.addAttribute(attr);
+      this.characterAttributes.push({
+        attribute: attr,
+        label: decamelize(attr)
+      })
     }
-  }
-
-  addAttribute(attribute: string) {
-    this.characterAttributes.push({
-      attribute: attribute,
-      label: decamelize(attribute)
-    })
   }
 
   newCharacter() {
