@@ -9,7 +9,7 @@
     <packaging>jar</packaging>
 
     <name>pathfinder-helper</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Pathfinder Helper</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
