@@ -1,0 +1,28 @@
+<div class="mainDiv">
+  <div class="weaponList">
+    <div class="weapon" *ngFor="let weapon of weapons" (click)="select(weapon)"
+         [class.selected]="weapon.id == currentWeapon.id">
+      {{weapon.name}}
+    </div>
+  </div>
+  <div class="weaponEditor">
+    <div class="topRow">
+      <button (click)="newWeapon()">Create new</button>
+      <button (click)="save()">Save</button>
+      <button (click)="deleteWeapon()">Delete</button>
+      <label>
+        <input type="text" [(ngModel)]="currentWeapon.name">
+      </label>
+      <span *ngIf="currentWeapon.id >= 0">Editing id {{currentWeapon.id}}</span>
+      <span *ngIf="currentWeapon.id < 0">Creating new weapon</span>
+    </div>
+    <div class="attributePane">
+      <div *ngFor="let attr of weaponAttributes">
+        <label>
+          {{attr.label}}:
+          <input type="number" [(ngModel)]="currentWeapon[attr.attribute]">
+        </label>
+      </div>
+    </div>
+  </div>
+</div>

@@ -29,3 +29,13 @@ data class JsonCharacter(
             charisma = characterEntity.charisma
     )
 }
+
+data class JsonWeapon(
+        val id: Long?,
+        val name: String
+) {
+    constructor(weaponEntity: WeaponEntity) : this(
+            id = weaponEntity.id,
+            name = weaponEntity.name
+    )
+}

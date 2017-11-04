@@ -9,12 +9,15 @@ import {FormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app-routing.module";
 import {CharacterService} from "./character-creator/character-creator.service";
 import {BattleService} from "./battle-simulator/battle-simulator.service";
+import {WeaponCreatorComponent} from './weapon-creator/weapon-creator.component';
+import {WeaponCreatorService} from "./weapon-creator/weapon-creator.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     BattleSimulatorComponent,
-    CharacterCreatorComponent
+    CharacterCreatorComponent,
+    WeaponCreatorComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,7 @@ import {BattleService} from "./battle-simulator/battle-simulator.service";
     FormsModule,
     AppRoutingModule
   ],
-  providers: [CharacterService, BattleService],
+  providers: [CharacterService, BattleService, WeaponCreatorService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

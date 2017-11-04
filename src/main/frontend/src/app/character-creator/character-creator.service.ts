@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http} from "@angular/http";
+import {Http, Response} from "@angular/http";
 
 @Injectable()
 export class CharacterService {
@@ -15,13 +15,13 @@ export class CharacterService {
       .then(response => response.json() as PathfinderCharacter[])
   }
 
-  save(character: PathfinderCharacter) {
+  save(character: PathfinderCharacter): Promise<PathfinderCharacter> {
     return this.http.post(this.characterCreatorUrl + "save", character)
       .toPromise()
       .then(response => response.json() as PathfinderCharacter)
   }
 
-  deleteCharacter(character: PathfinderCharacter) {
+  deleteCharacter(character: PathfinderCharacter): Promise<Response> {
     return this.http.post(this.characterCreatorUrl + "delete", character)
       .toPromise()
   }

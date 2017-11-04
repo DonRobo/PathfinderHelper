@@ -8,3 +8,8 @@ export function decamelize(input: string): string {
       return str.toUpperCase();
     })
 }
+
+export interface NumberAttribute {
+  label: string;
+  attribute: string;
+}

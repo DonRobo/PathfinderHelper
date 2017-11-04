@@ -1,0 +1,54 @@
+.mainDiv {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.weaponList {
+  border: solid 2px #949494;
+  height: 100%;
+  flex: 1;
+  margin-right: .3em;
+  /*padding: .3em 0 0 .3em;*/
+  overflow: auto;
+}
+
+.weapon {
+  cursor: default;
+}
+
+.weapon.selected {
+  background: #7b9aff;
+}
+
+.weaponEditor {
+  flex: 5;
+  border: solid 2px #949494;
+  height: 100%;
+}
+
+.topRow {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.topRow > button {
+  flex: .5;
+  margin: 0.3em;
+}
+
+.topRow > label {
+  flex: 5;
+}
+
+.topRow > label > input {
+  width: 95%;
+  margin-left: 1em;
+  margin-right: 1em;
+  padding: 3px;
+}
+
+.topRow > span {
+  flex: 1;
+}
