@@ -12,7 +12,7 @@ const routes: Routes = [{
   component: CharacterCreatorComponent
 }, {
   path: '',
-  redirectTo: '/battleSimulator',
+  redirectTo: '/characterCreator',
   pathMatch: 'full'
 }];
 

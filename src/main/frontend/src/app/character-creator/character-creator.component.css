@@ -34,7 +34,8 @@
 }
 
 .topRow > button {
-  flex: 1;
+  flex: .5;
+  margin: 0.3em;
 }
 
 .topRow > label {

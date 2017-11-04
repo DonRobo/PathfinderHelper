@@ -7,6 +7,8 @@ import {HttpModule} from "@angular/http";
 import {CharacterCreatorComponent} from "./character-creator/character-creator.component";
 import {FormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app-routing.module";
+import {CharacterService} from "./character-creator/character-creator.service";
+import {BattleService} from "./battle-simulator/battle-simulator.service";
 
 @NgModule({
   declarations: [
@@ -20,7 +22,7 @@ import {AppRoutingModule} from "./app-routing.module";
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [CharacterService, BattleService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
