@@ -1,5 +1,9 @@
 package com.donrobo.pathfinderhelper.data
 
+//TODO size
+//TODO abilities
+//TODO items
+//TODO feats
 data class JsonCharacter(
         val id: Long?,
         val name: String,

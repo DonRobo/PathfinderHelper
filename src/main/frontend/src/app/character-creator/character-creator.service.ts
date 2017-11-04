@@ -9,25 +9,25 @@ export class CharacterService {
   constructor(private http: Http) {
   }
 
-  getCharacters(): Promise<Character[]> {
+  getCharacters(): Promise<PathfinderCharacter[]> {
     return this.http.get(this.characterCreatorUrl + "list")
       .toPromise()
-      .then(response => response.json() as Character[])
+      .then(response => response.json() as PathfinderCharacter[])
   }
 
-  save(character: Character) {
+  save(character: PathfinderCharacter) {
     return this.http.post(this.characterCreatorUrl + "save", character)
       .toPromise()
-      .then(response => response.json() as Character)
+      .then(response => response.json() as PathfinderCharacter)
   }
 
-  delete(character: Character) {
+  deleteCharacter(character: PathfinderCharacter) {
     return this.http.post(this.characterCreatorUrl + "delete", character)
       .toPromise()
   }
 }
 
-export class Character {
+export class PathfinderCharacter {
   id: number;
   name: string;
   maxHitpoints: number;
@@ -64,11 +64,11 @@ export class Character {
   }
 
   calculateArmorClass() {
-    return 10 + this.armorBonus + getSkillModifier(this.dexterity);
+    return 10 + this.armorBonus + PathfinderCharacter.getSkillModifier(this.dexterity);
   }
 
   calculateTouch() {
-    return 10 + getSkillModifier(this.dexterity);
+    return 10 + PathfinderCharacter.getSkillModifier(this.dexterity);
   }
 
   calculateWrongFoot() {
@@ -76,11 +76,11 @@ export class Character {
   }
 
   calculateInitiative() {
-    return getSkillModifier(this.dexterity);
+    return PathfinderCharacter.getSkillModifier(this.dexterity);
   }
 
-}
+  static getSkillModifier(value: number): number {
+    return Math.ceil((value - 1) / 2) - 5
+  }
 
-export function getSkillModifier(value: number): number {
-  return Math.ceil((value - 1) / 2) - 5
 }

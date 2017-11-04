@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Character, CharacterService} from "./character-creator.service";
+import {CharacterService, PathfinderCharacter} from "./character-creator.service";
 import {decamelize} from "../utils";
 
 interface NumberAttribute {
@@ -13,9 +13,9 @@ interface NumberAttribute {
   styleUrls: ['./character-creator.component.css']
 })
 export class CharacterCreatorComponent implements OnInit {
-  characters: Character[];
+  characters: PathfinderCharacter[];
 
-  currentCharacter: Character;
+  currentCharacter: PathfinderCharacter;
 
   characterAttributes: NumberAttribute[] = [];
 
@@ -30,7 +30,7 @@ export class CharacterCreatorComponent implements OnInit {
   }
 
   initializeAttributes() {
-    for (let attr of Character.attributes) {
+    for (let attr of PathfinderCharacter.attributes) {
       this.addAttribute(attr);
     }
   }
@@ -43,7 +43,7 @@ export class CharacterCreatorComponent implements OnInit {
   }
 
   newCharacter() {
-    this.currentCharacter = new Character();
+    this.currentCharacter = new PathfinderCharacter();
   }
 
   save() {
@@ -54,20 +54,21 @@ export class CharacterCreatorComponent implements OnInit {
   }
 
   deleteCharacter() {
-    this.characterCreatorService.delete(this.currentCharacter).then(_ => {
+    this.characterCreatorService.deleteCharacter(this.currentCharacter).then(_ => {
       this.updateList();
       this.newCharacter();
     });
   }
 
-  select(character: Character) {
-    this.currentCharacter = Object.assign(new Character(), character);
+  select(character: PathfinderCharacter) {
+    this.currentCharacter = Object.assign(new PathfinderCharacter(), character);
   }
 
   private updateList() {
     this.characterCreatorService.getCharacters().then(newCharacters => {
       this.characters = newCharacters;
-      this.characters = this.characters.sort((char1: Character, char2: Character) => char1.name.localeCompare(char2.name))
+      this.characters = this.characters.sort((char1: PathfinderCharacter, char2: PathfinderCharacter) =>
+        char1.name.localeCompare(char2.name))
     });
   }
 }
