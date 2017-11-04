@@ -30,11 +30,56 @@ export class CharacterService {
 export class Character {
   id: number;
   name: string;
-  initiative: number;
-  maxHealth: number;
+  maxHitpoints: number;
+  armorBonus: number;
+  strength: number;
+  dexterity: number;
+  constitution: number;
+  intelligence: number;
+  wisdom: number;
+  charisma: number;
 
-  constructor(id: number, name: string) {
-    this.id = id;
-    this.name = name;
+  static attributes: string[] = [
+    "maxHitpoints",
+    "armorBonus",
+    "strength",
+    "dexterity",
+    "constitution",
+    "intelligence",
+    "wisdom",
+    "charisma"
+  ];
+
+  constructor() {
+    this.id = -1;
+    this.name = "";
+    this.armorBonus = 0;
+    this.strength = 10;
+    this.dexterity = 10;
+    this.constitution = 10;
+    this.intelligence = 10;
+    this.wisdom = 10;
+    this.charisma = 10;
   }
+
+  calculateArmorClass() {
+    return 10 + this.armorBonus + getSkillModifier(this.dexterity);
+  }
+
+  calculateTouch() {
+    return 10 + getSkillModifier(this.dexterity);
+  }
+
+  calculateWrongFoot() {
+    return 10 + this.armorBonus;
+  }
+
+  calculateInitiative() {
+    return getSkillModifier(this.dexterity);
+  }
+
+}
+
+export function getSkillModifier(value: number): number {
+  return Math.ceil((value - 1) / 2) - 5
 }

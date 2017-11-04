@@ -17,14 +17,36 @@
       <span *ngIf="currentCharacter.id < 0">Creating new character</span>
     </div>
     <div class="attributePane">
-      <label>
-        Initiative:
-        <input type="number" [(ngModel)]="currentCharacter.initiative">
-      </label><br/>
-      <label>
-        Health:
-        <input type="number" [(ngModel)]="currentCharacter.maxHealth">
-      </label>
+      <div *ngFor="let attr of characterAttributes">
+        <label>
+          {{attr.label}}:
+          <input type="number" [(ngModel)]="currentCharacter[attr.attribute]">
+        </label>
+      </div>
+      <div>
+        <label>
+          Armor Class:
+          <input type="number" [ngModel]="currentCharacter.calculateArmorClass()" disabled>
+        </label>
+      </div>
+      <div>
+        <label>
+          Touch:
+          <input type="number" [ngModel]="currentCharacter.calculateTouch()" disabled>
+        </label>
+      </div>
+      <div>
+        <label>
+          On the wrong foot:
+          <input type="number" [ngModel]="currentCharacter.calculateWrongFoot()" disabled>
+        </label>
+      </div>
+      <div>
+        <label>
+          Initiative:
+          <input type="number" [ngModel]="currentCharacter.calculateInitiative()" disabled>
+        </label>
+      </div>
     </div>
   </div>
 </div>

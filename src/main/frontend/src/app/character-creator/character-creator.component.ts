@@ -1,5 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Character, CharacterService} from "./character-creator.service";
+import {decamelize} from "../utils";
+
+interface NumberAttribute {
+  label: string;
+  attribute: string;
+}
 
 @Component({
   selector: 'app-character-creator',
@@ -11,17 +17,33 @@ export class CharacterCreatorComponent implements OnInit {
 
   currentCharacter: Character;
 
+  characterAttributes: NumberAttribute[] = [];
+
   constructor(private characterCreatorService: CharacterService) {
   }
 
   ngOnInit() {
     this.characters = [];
     this.newCharacter();
-    this.updateList()
+    this.updateList();
+    this.initializeAttributes();
+  }
+
+  initializeAttributes() {
+    for (let attr of Character.attributes) {
+      this.addAttribute(attr);
+    }
+  }
+
+  addAttribute(attribute: string) {
+    this.characterAttributes.push({
+      attribute: attribute,
+      label: decamelize(attribute)
+    })
   }
 
   newCharacter() {
-    this.currentCharacter = new Character(-1, "");
+    this.currentCharacter = new Character();
   }
 
   save() {
