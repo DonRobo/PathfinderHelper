@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Http, Response} from "@angular/http";
+import {DiceThrow} from "../../utils";
 
 @Injectable()
 export class WeaponCreatorService {
@@ -30,15 +31,35 @@ export class WeaponCreatorService {
 export class Weapon {
   id: number;
   name: string;
-  attack: number;
+  damageSmall: DiceThrow;
+  damageMedium: DiceThrow;
+  critMultiplier: number; //TODO double weapons
+  range: number;
+  weight: number;
+  type: WeaponType;
 
-  static attributes: string[] = [
-    "attack"
-  ];
+  //TODO special
 
   constructor() {
     this.id = -1;
     this.name = "";
-    this.attack = 1;
+    this.damageSmall = {
+      diceCount: 1,
+      faceCount: 6
+    };
+    this.damageMedium = {
+      diceCount: 1,
+      faceCount: 8
+    };
+    this.critMultiplier = 2;
+    this.range = 0;
+    this.weight = 1;
+    this.type = WeaponType.Slashing;
   }
+}
+
+export enum WeaponType {
+  Bludgeoning,
+  Piercing,
+  Slashing
 }

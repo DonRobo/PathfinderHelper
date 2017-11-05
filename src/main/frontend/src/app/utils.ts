@@ -13,3 +13,8 @@ export interface NumberAttribute {
   label: string;
   attribute: string;
 }
+
+export interface DiceThrow {
+  diceCount: number;
+  faceCount: number;
+}
