@@ -67,7 +67,7 @@ export class EditorAttributeComponent implements OnInit, ControlValueAccessor, O
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['type'].currentValue == 'enum') {
+    if (changes['type'] && changes['type'].currentValue == 'enum') {
       this.initEnumValues();
     }
   }
@@ -77,6 +77,7 @@ export class EditorAttributeComponent implements OnInit, ControlValueAccessor, O
     this.enumValues = [];
     for (let k of keys) {
       this.enumValues.push({
+        value: this.enumType[k],
         name: k,
         label: decamelize(k)
       })
@@ -87,4 +88,5 @@ export class EditorAttributeComponent implements OnInit, ControlValueAccessor, O
 interface EnumValue {
   name: string;
   label: string;
+  value: number;
 }

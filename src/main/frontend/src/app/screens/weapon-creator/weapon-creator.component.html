@@ -30,8 +30,9 @@
       <app-editor-attribute label="Weight" [(ngModel)]="currentWeapon.weight"
                             type="number">Pfd.
       </app-editor-attribute>
-      <app-editor-attribute label="Type" [(ngModel)]="currentWeapon.type"
-                            type="enum" [enumType]="weaponTypeEnum"></app-editor-attribute>
+      <app-editor-attribute label="Type" [(ngModel)]="currentWeapon.weaponType"
+                            type="enum" [enumType]="weaponTypeEnum">{{currentWeapon.weaponType}}
+      </app-editor-attribute>
     </div>
   </div>
 </div>

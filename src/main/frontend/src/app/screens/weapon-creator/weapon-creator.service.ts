@@ -13,18 +13,32 @@ export class WeaponCreatorService {
   getWeapons(): Promise<Weapon[]> {
     return this.http.get(this.weaponCreatorUrl + "list")
       .toPromise()
-      .then(response => response.json() as Weapon[])
+      .then(response => {
+        let responseJson = response.json() as Weapon[];
+        for (let entry in responseJson) {
+          responseJson[entry] = WeaponCreatorService.fixWeaponObjectFromServer(responseJson[entry]);
+        }
+        return responseJson;
+      })
   }
 
   save(weapon: Weapon): Promise<Weapon> {
-    return this.http.post(this.weaponCreatorUrl + "save", weapon)
+    let payload: any = Object.assign({}, weapon);
+    payload.weaponType = WeaponType[weapon.weaponType];
+    return this.http.post(this.weaponCreatorUrl + "save", payload)
       .toPromise()
-      .then(response => response.json() as Weapon)
+      .then(response => WeaponCreatorService.fixWeaponObjectFromServer(response.json() as Weapon))
   }
 
   deleteWeapon(weapon: Weapon): Promise<Response> {
     return this.http.post(this.weaponCreatorUrl + "delete", weapon)
       .toPromise()
+  }
+
+  private static fixWeaponObjectFromServer(serverWeapon: Weapon): Weapon {
+    let fixedWeapon = Object.assign(new Weapon(), serverWeapon);
+    fixedWeapon.weaponType = WeaponType[serverWeapon.weaponType] as any;
+    return fixedWeapon;
   }
 }
 
@@ -36,7 +50,7 @@ export class Weapon {
   critMultiplier: number; //TODO double weapons
   range: number; //TODO optional
   weight: number;
-  type: WeaponType;
+  weaponType: WeaponType;
 
   //TODO special
 
@@ -54,7 +68,7 @@ export class Weapon {
     this.critMultiplier = 2;
     this.range = 0;
     this.weight = 1;
-    this.type = WeaponType.Slashing;
+    this.weaponType = WeaponType.Slashing;
   }
 }
 

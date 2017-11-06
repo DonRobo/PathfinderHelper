@@ -33,11 +33,38 @@ data class JsonCharacter(
 data class JsonWeapon(
         val id: Long?,
         val name: String,
-        val attack: Int
+        val damageSmall: DiceThrow,
+        val damageMedium: DiceThrow,
+        val critMultiplier: Int,
+        val range: Int,
+        val weight: Int,
+        val weaponType: WeaponType
 ) {
     constructor(weaponEntity: WeaponEntity) : this(
             id = weaponEntity.id,
             name = weaponEntity.name,
-            attack = weaponEntity.attack
+            damageSmall = DiceThrow(weaponEntity.damageSmall),
+            damageMedium = DiceThrow(weaponEntity.damageMedium),
+            critMultiplier = weaponEntity.critMultiplier,
+            range = weaponEntity.range,
+            weight = weaponEntity.weight,
+            weaponType = WeaponType.valueOf(weaponEntity.weaponType.name)
     )
+}
+
+enum class WeaponType {
+    Bludgeoning,
+    Piercing,
+    Slashing
+}
+
+data class DiceThrow(val diceCount: Int, val faceCount: Int) {
+    constructor(entityDiceThrow: EntityDiceThrow) : this(
+            diceCount = entityDiceThrow.diceCount,
+            faceCount = entityDiceThrow.faceCount
+    )
+
+    @Suppress("unused")
+    private constructor() : this(1, 6)
+
 }
