@@ -34,7 +34,7 @@ export class Weapon {
   damageSmall: DiceThrow;
   damageMedium: DiceThrow;
   critMultiplier: number; //TODO double weapons
-  range: number;
+  range: number; //TODO optional
   weight: number;
   type: WeaponType;
 

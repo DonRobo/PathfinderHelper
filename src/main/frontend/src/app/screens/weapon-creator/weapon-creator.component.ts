@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Weapon, WeaponCreatorService} from "./weapon-creator.service";
+import {Weapon, WeaponCreatorService, WeaponType} from "./weapon-creator.service";
 
 @Component({
   selector: 'app-weapon-creator',
@@ -10,6 +10,8 @@ export class WeaponCreatorComponent implements OnInit {
   weapons: Weapon[];
 
   currentWeapon: Weapon;
+
+  weaponTypeEnum = WeaponType;
 
   constructor(private weaponCreatorService: WeaponCreatorService) {
   }

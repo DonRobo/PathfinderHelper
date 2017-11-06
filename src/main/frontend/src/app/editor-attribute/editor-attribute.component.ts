@@ -1,6 +1,7 @@
-import {Component, forwardRef, Input, OnInit} from '@angular/core';
+import {Component, forwardRef, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 import {PathfinderCharacter} from "../screens/character-creator/character-creator.service";
+import {decamelize} from "../utils";
 
 @Component({
   selector: 'app-editor-attribute',
@@ -14,12 +15,14 @@ import {PathfinderCharacter} from "../screens/character-creator/character-creato
     }
   ]
 })
-export class EditorAttributeComponent implements OnInit, ControlValueAccessor {
-
+export class EditorAttributeComponent implements OnInit, ControlValueAccessor, OnChanges {
   @Input() label: string;
   @Input() type: string = "number";
+  @Input() enumType: any;
 
-  _value: any;
+  enumValues: EnumValue[];
+
+  private _value: any;
   private _onChange: (_: any) => void;
   private disabled: boolean;
 
@@ -63,4 +66,25 @@ export class EditorAttributeComponent implements OnInit, ControlValueAccessor {
       return '+' + str;
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['type'].currentValue == 'enum') {
+      this.initEnumValues();
+    }
+  }
+
+  private initEnumValues() {
+    let keys = Object.keys(this.enumType).map(key => this.enumType[key]).filter(value => typeof value === 'string') as string[];
+    this.enumValues = [];
+    for (let k of keys) {
+      this.enumValues.push({
+        name: k,
+        label: decamelize(k)
+      })
+    }
+  }
+}
+
+interface EnumValue {
+  name: string;
+  label: string;
 }

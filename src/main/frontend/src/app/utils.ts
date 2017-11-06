@@ -2,7 +2,7 @@
 export function decamelize(input: string): string {
   return input
   // insert a space before all caps
-    .replace(/([A-Z])/g, ' $1')
+    .replace(/([A-Z])/g, ' $1').trim()
     // uppercase the first character
     .replace(/^./, function (str) {
       return str.toUpperCase();

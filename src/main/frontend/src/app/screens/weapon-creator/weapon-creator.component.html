@@ -22,7 +22,16 @@
       <app-editor-attribute label="Damage (medium)" [(ngModel)]="currentWeapon.damageMedium"
                             type="dice"></app-editor-attribute>
       <app-editor-attribute label="Crit Multiplier" [(ngModel)]="currentWeapon.critMultiplier"
-                            type="number"></app-editor-attribute>
+                            type="number">x
+      </app-editor-attribute>
+      <app-editor-attribute label="Range" [(ngModel)]="currentWeapon.range"
+                            type="number">m
+      </app-editor-attribute>
+      <app-editor-attribute label="Weight" [(ngModel)]="currentWeapon.weight"
+                            type="number">Pfd.
+      </app-editor-attribute>
+      <app-editor-attribute label="Type" [(ngModel)]="currentWeapon.type"
+                            type="enum" [enumType]="weaponTypeEnum"></app-editor-attribute>
     </div>
   </div>
 </div>
