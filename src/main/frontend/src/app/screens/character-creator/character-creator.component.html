@@ -17,21 +17,16 @@
       <span *ngIf="currentCharacter.id < 0">Creating new character</span>
     </div>
     <div class="attributePane">
-      <app-number-attribute *ngFor="let attr of characterAttributes" [label]="attr.label">
-        <input type="number" [(ngModel)]="currentCharacter[attr.attribute]">
-      </app-number-attribute>
-      <app-number-attribute label="Armor Class">
-        <input type="number" [ngModel]="currentCharacter.calculateArmorClass()" disabled>
-      </app-number-attribute>
-      <app-number-attribute label="Touch">
-        <input type="number" [ngModel]="currentCharacter.calculateTouch()" disabled>
-      </app-number-attribute>
-      <app-number-attribute label="On the wrong foot">
-        <input type="number" [ngModel]="currentCharacter.calculateWrongFoot()" disabled>
-      </app-number-attribute>
-      <app-number-attribute label="Initiative">
-        <input type="number" [ngModel]="currentCharacter.calculateInitiative()" disabled>
-      </app-number-attribute>
+      <app-editor-attribute *ngFor="let attr of characterAttributes" [label]="attr.label"
+                            [(ngModel)]="currentCharacter[attr.attribute]"></app-editor-attribute>
+      <app-editor-attribute label="Armor Class" [ngModel]="currentCharacter.calculateArmorClass()">
+      </app-editor-attribute>
+      <app-editor-attribute label="Touch" [ngModel]="currentCharacter.calculateTouch()" disabled>
+      </app-editor-attribute>
+      <app-editor-attribute label="On the wrong foot" [ngModel]="currentCharacter.calculateWrongFoot()" disabled>
+      </app-editor-attribute>
+      <app-editor-attribute label="Initiative" [ngModel]="currentCharacter.calculateInitiative()" disabled>
+      </app-editor-attribute>
     </div>
   </div>
 </div>

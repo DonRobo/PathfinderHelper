@@ -17,12 +17,8 @@
       <span *ngIf="currentWeapon.id < 0">Creating new weapon</span>
     </div>
     <div class="attributePane">
-      <div *ngFor="let attr of weaponAttributes">
-        <label>
-          {{attr.label}}:
-          <input type="number" [(ngModel)]="currentWeapon[attr.attribute]">
-        </label>
-      </div>
+      <app-editor-attribute label="Damage (small)" [(ngModel)]="currentWeapon.damageSmall"
+                            type="dice"></app-editor-attribute>
     </div>
   </div>
 </div>

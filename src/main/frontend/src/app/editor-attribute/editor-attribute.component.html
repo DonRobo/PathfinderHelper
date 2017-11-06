@@ -1,0 +1,11 @@
+<div>
+  <label [ngSwitch]="type">
+    {{label}}:
+    <input *ngSwitchCase="'number'" type="number" [(ngModel)]="value" [disabled]="disabled">
+    <span *ngSwitchCase="'dice'">
+      <input class="diceInput" type="number" [(ngModel)]="value.diceCount" [disabled]="disabled">
+      <input class="diceInput" type="number" [(ngModel)]="value.faceCount" [disabled]="disabled">
+      {{value.diceCount}}d{{value.faceCount}} = {{value.diceCount}} - {{value.diceCount*value.faceCount}}
+    </span>
+  </label>
+</div>

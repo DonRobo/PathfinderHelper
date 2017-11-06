@@ -11,7 +11,7 @@ import {CharacterService} from "./screens/character-creator/character-creator.se
 import {BattleService} from "./screens/battle-simulator/battle-simulator.service";
 import {WeaponCreatorComponent} from './screens/weapon-creator/weapon-creator.component';
 import {WeaponCreatorService} from "./screens/weapon-creator/weapon-creator.service";
-import {NumberAttributeComponent} from './number-attribute/number-attribute.component';
+import {EditorAttributeComponent} from './editor-attribute/editor-attribute.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import {NumberAttributeComponent} from './number-attribute/number-attribute.comp
     BattleSimulatorComponent,
     CharacterCreatorComponent,
     WeaponCreatorComponent,
-    NumberAttributeComponent
+    EditorAttributeComponent
   ],
   imports: [
     BrowserModule,
