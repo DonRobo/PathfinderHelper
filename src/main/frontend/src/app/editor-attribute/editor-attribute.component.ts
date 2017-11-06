@@ -45,11 +45,11 @@ export class EditorAttributeComponent implements OnInit, ControlValueAccessor {
     this.disabled = isDisabled;
   }
 
-  get value() {
+  get value(): any {
     return this._value;
   }
 
-  set value(val: number) {
+  set value(val: any) {
     this._value = val;
     this._onChange(val);
   }
