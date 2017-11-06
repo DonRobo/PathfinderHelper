@@ -2,6 +2,9 @@
   <label [ngSwitch]="type">
     {{label}}:
     <input *ngSwitchCase="'number'" type="number" [(ngModel)]="value" [disabled]="disabled">
+    <span *ngSwitchCase="'attribute'">
+      <input type="number" [(ngModel)]="value" [disabled]="disabled"> {{formatSkillModifier(value)}}
+    </span>
     <span *ngSwitchCase="'dice'">
       <input *ngIf="value" class="diceInput" type="number" [(ngModel)]="value.diceCount" [disabled]="disabled">
       <input *ngIf="value" class="diceInput" type="number" [(ngModel)]="value.faceCount" [disabled]="disabled">

@@ -1,5 +1,6 @@
 import {Component, forwardRef, Input, OnInit} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {PathfinderCharacter} from "../screens/character-creator/character-creator.service";
 
 @Component({
   selector: 'app-editor-attribute',
@@ -52,6 +53,14 @@ export class EditorAttributeComponent implements OnInit, ControlValueAccessor {
   set value(val: any) {
     this._value = val;
     this._onChange(val);
+  }
+
+  formatSkillModifier(value: number): string {
+    const str: string = PathfinderCharacter.getSkillModifier(value).toString();
+    if (str.startsWith('-'))
+      return str;
+    else
+      return '+' + str;
   }
 
 }

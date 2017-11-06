@@ -17,9 +17,13 @@
       <span *ngIf="currentCharacter.id < 0">Creating new character</span>
     </div>
     <div class="attributePane">
+      <app-editor-attribute label="Max Hitpoints" [(ngModel)]="currentCharacter.maxHitpoints">
+      </app-editor-attribute>
+      <app-editor-attribute label="Armor Bonus" [(ngModel)]="currentCharacter.armorBonus">
+      </app-editor-attribute>
       <app-editor-attribute *ngFor="let attr of characterAttributes" [label]="attr.label"
-                            [(ngModel)]="currentCharacter[attr.attribute]"></app-editor-attribute>
-      <app-editor-attribute label="Armor Class" [ngModel]="currentCharacter.calculateArmorClass()">
+                            [(ngModel)]="currentCharacter[attr.attribute]" type="attribute"></app-editor-attribute>
+      <app-editor-attribute label="Armor Class" [ngModel]="currentCharacter.calculateArmorClass()" disabled="">
       </app-editor-attribute>
       <app-editor-attribute label="Touch" [ngModel]="currentCharacter.calculateTouch()" disabled>
       </app-editor-attribute>

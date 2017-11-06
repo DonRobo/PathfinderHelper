@@ -40,8 +40,6 @@ export class PathfinderCharacter {
   charisma: number;
 
   static attributes: string[] = [
-    "maxHitpoints",
-    "armorBonus",
     "strength",
     "dexterity",
     "constitution",
