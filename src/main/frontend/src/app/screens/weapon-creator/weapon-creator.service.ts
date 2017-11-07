@@ -14,11 +14,7 @@ export class WeaponCreatorService {
     return this.http.get(this.weaponCreatorUrl + "list")
       .toPromise()
       .then(response => {
-        let responseJson = response.json() as Weapon[];
-        for (let entry in responseJson) {
-          responseJson[entry] = WeaponCreatorService.fixWeaponObjectFromServer(responseJson[entry]);
-        }
-        return responseJson;
+        return (response.json() as Weapon[]).map((weapon) => WeaponCreatorService.fixWeaponObjectFromServer(weapon));
       })
   }
 
