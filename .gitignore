@@ -10,5 +10,5 @@ target/
 .mvn/
 mvnw
 mvnw.cmd
-db/*
 src/main/resources/static/
+db/data.db.*
