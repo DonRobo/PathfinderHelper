@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CharacterService, PathfinderCharacter} from "./character-creator.service";
-import {decamelize, NumberAttribute} from "../../utils";
+import {decamelize, NumberAttribute} from "../../common";
 
 @Component({
   selector: 'app-character-creator',

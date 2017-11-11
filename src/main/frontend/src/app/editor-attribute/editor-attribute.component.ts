@@ -1,7 +1,7 @@
 import {Component, forwardRef, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 import {PathfinderCharacter} from "../screens/character-creator/character-creator.service";
-import {decamelize} from "../utils";
+import {decamelize} from "../common";
 
 @Component({
   selector: 'app-editor-attribute',
