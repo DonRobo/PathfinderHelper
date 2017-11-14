@@ -3,17 +3,17 @@ package com.donrobo.pathfinderhelper.data
 import javax.persistence.*
 
 @Entity
-data class CharacterEntity(
+class CharacterEntity(
         @GeneratedValue @Id var id: Long?,
         @Column(unique = true) var name: String,
-        val maxHitpoints: Int,
-        val armorBonus: Int,
-        val strength: Int,
-        val dexterity: Int,
-        val constitution: Int,
-        val intelligence: Int,
-        val wisdom: Int,
-        val charisma: Int
+        var maxHitpoints: Int,
+        var armorBonus: Int,
+        var strength: Int,
+        var dexterity: Int,
+        var constitution: Int,
+        var intelligence: Int,
+        var wisdom: Int,
+        var charisma: Int
 ) {
     constructor(jsonCharacter: JsonCharacter) : this(
             id = if (jsonCharacter.id == null || jsonCharacter.id < 0) null else jsonCharacter.id,
@@ -32,7 +32,7 @@ data class CharacterEntity(
 }
 
 @Entity
-data class WeaponEntity(
+class WeaponEntity(
         @GeneratedValue @Id var id: Long?,
         @Column(unique = true) var name: String,
         @Embedded
@@ -74,7 +74,7 @@ enum class EntityWeaponType {
 }
 
 @Embeddable
-data class EntityDiceThrow(var diceCount: Int, var faceCount: Int) {
+class EntityDiceThrow(var diceCount: Int, var faceCount: Int) {
     constructor(diceThrow: DiceThrow) : this(
             diceCount = diceThrow.diceCount,
             faceCount = diceThrow.faceCount
