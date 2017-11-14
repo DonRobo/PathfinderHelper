@@ -1,7 +1,6 @@
 package com.donrobo.pathfinderhelper.controller
 
-import com.donrobo.pathfinderhelper.data.JsonWeapon
-import com.donrobo.pathfinderhelper.data.WeaponEntity
+import com.donrobo.pathfinderhelper.data.Weapon
 import com.donrobo.pathfinderhelper.data.WeaponRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
@@ -16,23 +15,20 @@ class WeaponCreatorController(@Autowired val weaponRepository: WeaponRepository,
                               @PersistenceContext val entityManager: EntityManager) {
 
     @PostMapping("save")
-    fun saveWeapon(@RequestBody weapon: JsonWeapon): JsonWeapon {
-        val entity = WeaponEntity(weapon)
-        if (entity.id == null)
-            entityManager.persist(entity)
+    fun saveWeapon(@RequestBody weapon: Weapon): Weapon {
+        if (weapon.id == null)
+            entityManager.persist(weapon)
         else
-            entityManager.merge(entity)
+            entityManager.merge(weapon)
 
-        return JsonWeapon(entity)
+        return weapon
     }
 
     @PostMapping("delete")
-    fun deleteWeapon(@RequestBody weapon: JsonWeapon) {
-        entityManager.remove(entityManager.getReference(WeaponEntity::class.java, weapon.id))
+    fun deleteWeapon(@RequestBody weapon: Weapon) {
+        entityManager.remove(entityManager.getReference(Weapon::class.java, weapon.id))
     }
 
     @GetMapping("list")
-    fun listWeapons(): List<JsonWeapon> {
-        return weaponRepository.findAll().map { it -> JsonWeapon(it) }
-    }
+    fun listWeapons(): List<Weapon> = weaponRepository.findAll()
 }

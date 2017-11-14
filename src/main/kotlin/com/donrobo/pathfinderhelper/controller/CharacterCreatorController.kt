@@ -1,8 +1,7 @@
 package com.donrobo.pathfinderhelper.controller
 
-import com.donrobo.pathfinderhelper.data.CharacterEntity
 import com.donrobo.pathfinderhelper.data.CharacterRepository
-import com.donrobo.pathfinderhelper.data.JsonCharacter
+import com.donrobo.pathfinderhelper.data.PathfinderCharacter
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import javax.persistence.EntityManager
@@ -16,23 +15,20 @@ class CharacterCreatorController(@Autowired val characterRepository: CharacterRe
                                  @PersistenceContext val entityManager: EntityManager) {
 
     @PostMapping("save")
-    fun saveCharacter(@RequestBody character: JsonCharacter): JsonCharacter {
-        val entity = CharacterEntity(character)
-        if (entity.id == null)
-            entityManager.persist(entity)
+    fun saveCharacter(@RequestBody character: PathfinderCharacter): PathfinderCharacter {
+        if (character.id == null)
+            entityManager.persist(character)
         else
-            entityManager.merge(entity)
+            entityManager.merge(character)
 
-        return JsonCharacter(entity)
+        return character
     }
 
     @PostMapping("delete")
-    fun deleteCharacter(@RequestBody character: JsonCharacter) {
-        entityManager.remove(entityManager.getReference(CharacterEntity::class.java, character.id))
+    fun deleteCharacter(@RequestBody character: PathfinderCharacter) {
+        entityManager.remove(entityManager.getReference(PathfinderCharacter::class.java, character.id))
     }
 
     @GetMapping("list")
-    fun listCharacters(): List<JsonCharacter> {
-        return characterRepository.findAll().map { it -> JsonCharacter(it) }
-    }
+    fun listCharacters(): List<PathfinderCharacter> = characterRepository.findAll()
 }
