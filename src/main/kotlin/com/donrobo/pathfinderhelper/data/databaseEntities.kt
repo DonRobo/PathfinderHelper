@@ -2,9 +2,24 @@ package com.donrobo.pathfinderhelper.data
 
 import javax.persistence.*
 
+@Entity
+class WeaponInventoryItemEntity(id: Long?, heldBy: PathfinderCharacter,
+                                @ManyToOne var weaponEntity: Weapon) :
+        InventoryItemEntity(id, heldBy)
+
+@Entity
+class GoldEntity(id: Long?, heldBy: PathfinderCharacter, var amount: Int) : InventoryItemEntity(id, heldBy)
+
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "ITEM_TYPE")
+@Entity
+abstract class InventoryItemEntity(
+        @GeneratedValue @Id var id: Long?,
+        @ManyToOne open var heldBy: PathfinderCharacter
+)
+
 //TODO size
 //TODO abilities
-//TODO items
 //TODO feats
 @Entity
 class PathfinderCharacter(

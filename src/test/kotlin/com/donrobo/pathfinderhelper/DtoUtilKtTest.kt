@@ -15,11 +15,11 @@ internal class DtoUtilKtTest {
     @Test
     fun createCopy() {
         val instance1 = TestClass1("test1", 1, 3)
-        val instance2 = createCopy(instance1, TestClass2::class)
+        val instance2 = convert(instance1, TestClass2::class)
         assertEquals(instance1.name, instance2.name)
         assertEquals(instance1.number, instance2.number)
 
-        val instance1Copy = createCopy(instance2, TestClass1::class)
+        val instance1Copy = convert(instance2, TestClass1::class)
         assertEquals(instance1.name, instance1Copy.name)
         assertEquals(instance1.number, instance1Copy.number)
         assertEquals(null, instance1Copy.optional)
@@ -31,7 +31,7 @@ internal class DtoUtilKtTest {
     @Test
     fun createListCopy() {
         val instance1 = ListTest1(listOf("test1", "test2"))
-        val instance2 = createCopy(instance1, ListTest2::class)
+        val instance2 = convert(instance1, ListTest2::class)
         assertEquals(instance1.strings, instance2.strings)
 
         instance2.strings.clear()
@@ -39,7 +39,7 @@ internal class DtoUtilKtTest {
         assertTrue(instance2.strings.isEmpty())
         instance2.strings += "yo"
 
-        val instance1Copy = createCopy(instance2, ListTest1::class)
+        val instance1Copy = convert(instance2, ListTest1::class)
         instance2.strings += "yo"
         assertEquals(listOf("yo"), instance1Copy.strings)
     }

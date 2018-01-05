@@ -52,7 +52,9 @@ export class CharacterCreatorComponent implements OnInit {
   }
 
   select(character: PathfinderCharacter) {
-    this.currentCharacter = Object.assign(new PathfinderCharacter(), character);
+    this.characterCreatorService.getCharacter(character.id).then(fullChar => {
+      this.currentCharacter = Object.assign(new PathfinderCharacter(), fullChar);
+    });
   }
 
   private updateList() {

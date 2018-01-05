@@ -4,7 +4,7 @@ import {Http, Response} from "@angular/http";
 @Injectable()
 export class CharacterService {
 
-  private characterCreatorUrl: string = "api/charactercreator/";
+  private characterCreatorUrl: string = "api/character/";
 
   constructor(private http: Http) {
   }
@@ -24,6 +24,12 @@ export class CharacterService {
   deleteCharacter(character: PathfinderCharacter): Promise<Response> {
     return this.http.post(this.characterCreatorUrl + "delete", character)
       .toPromise()
+  }
+
+  getCharacter(id: number): Promise<PathfinderCharacter> {
+    return this.http.get(this.characterCreatorUrl + id.toString())
+      .toPromise()
+      .then(response => response.json() as PathfinderCharacter)
   }
 }
 
